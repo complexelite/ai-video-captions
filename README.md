@@ -123,6 +123,16 @@ Copy `.env.example` to `.env` and adjust as needed:
 
 Larger whisper models produce better transcriptions but require more RAM and processing time. `base` is a good default for most use cases.
 
+### Complex Elite Tools deployment
+
+The Complex Elite deployment serves this app at `/ai-video-captions` behind the
+Perfex-authenticated `tools.complexelite.com` gateway. The frontend is attached
+to Dokploy's gateway network; the Flask backend stays on the app's private
+network and is reached through the frontend's server-side rewrite. Do not add
+public `ports` mappings to this Compose file. Uploaded videos and generated
+outputs are stored in the persistent `caption-data` volume and are cleaned up
+after the configured output TTL.
+
 ## Tech Stack
 
 | Layer | Technology |

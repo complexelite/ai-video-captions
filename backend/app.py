@@ -79,7 +79,7 @@ def create_app(testing: bool = False) -> Flask:
 
     @app.get("/api/health")
     def health():
-        return jsonify({"status": "ok", "version": "1.0.0"})
+        return jsonify({"status": "ok", "version": "1.0.1"})
 
     @app.post("/api/process")
     def process():
