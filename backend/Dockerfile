@@ -16,4 +16,7 @@ RUN mkdir -p data/temp data/output
 
 EXPOSE 5000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "600", "--workers", "2", "app:create_app()"]
+# JobStorage and its processing threads share memory within one process.
+# Use request threads for concurrent polling and video range requests; multiple
+# processes would each hold a different job list and overwrite the JSON store.
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--timeout", "600", "--workers", "1", "--threads", "4", "app:create_app()"]
