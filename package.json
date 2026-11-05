@@ -1,6 +1,6 @@
 {
   "name": "ai-video-captions",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "Free, open-source AI video caption generator",
   "scripts": {
