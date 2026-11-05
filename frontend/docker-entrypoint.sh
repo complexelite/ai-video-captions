@@ -1,8 +1,9 @@
 #!/bin/sh
 set -e
 
-# Run Prisma migrations/push on startup
-npx prisma db push --skip-generate 2>/dev/null || true
+# Initialize/check the persistent database before accepting requests.
+# Fail visibly if initialization fails; never serve against an absent schema.
+node node_modules/prisma/build/index.js db push --skip-generate
 
 # Start the Next.js server
 exec node server.js

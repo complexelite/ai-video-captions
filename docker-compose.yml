@@ -41,7 +41,9 @@ volumes:
 
 networks:
   captions-private:
-    internal: true
+    # Transcription downloads its model from Hugging Face on first use.
+    # Services remain unpublished, but need outbound internet access.
+    driver: bridge
   dokploy-network:
     external: true
     name: dokploy-network
